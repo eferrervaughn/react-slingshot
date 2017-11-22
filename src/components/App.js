@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, NavLink, Route } from 'react-router-dom';
 import HomePage from './HomePage';
-import FuelSavingsPage from '../containers/FuelSavingsPage';
-import AboutPage from './AboutPage';
 import NotFoundPage from './NotFoundPage';
 import JuicePage from '../containers/JuicePage';
 import SaucePage from './Sauce.js'
