@@ -7,6 +7,7 @@ import FuelSavingsPage from '../containers/FuelSavingsPage';
 import AboutPage from './AboutPage';
 import NotFoundPage from './NotFoundPage';
 import JuicePage from '../containers/JuicePage';
+import SaucePage from './Sauce.js'
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -20,14 +21,14 @@ class App extends React.Component {
         <div>
           <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
           {' | '}
-          <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
+          <NavLink to="/sauce" activeStyle={activeStyle}>Sauce</NavLink>
           {' | '}
-          <NavLink to="/about" activeStyle={activeStyle}>Juice</NavLink>
+          <NavLink to="/juice" activeStyle={activeStyle}>Juice</NavLink>
         </div>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/fuel-savings" component={FuelSavingsPage} />
-          <Route path="/about" component={JuicePage} />
+          <Route path="/sauce" component={() => <SaucePage name="Marcus" money/>} />
+          <Route path="/juice" component={JuicePage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
