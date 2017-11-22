@@ -1,7 +1,7 @@
 {
   "name": "e-boiler",
   "version": "0.0.1",
-  "description": "React, Redux, Emotion, Jest Boilerplate",
+  "description": "React, Redux, Emotion, Jest & React Router Boilerplate",
   "engines": {
     "npm": ">=3"
   },
@@ -37,6 +37,7 @@
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
     "redux": "3.6.0",
+    "redux-logger": "3.0.6",
     "redux-thunk": "2.1.0"
   },
   "devDependencies": {
