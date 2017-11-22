@@ -30,9 +30,12 @@
   "author": "Eric",
   "license": "MIT",
   "dependencies": {
+    "airtable": "0.5.0",
+    "emotion": "8.0.10",
     "object-assign": "4.1.0",
     "react": "16.0.0",
     "react-dom": "16.0.0",
+    "react-emotion": "8.0.10",
     "react-redux": "5.0.5",
     "react-router-dom": "4.2.2",
     "react-router-redux": "5.0.0-alpha.6",
@@ -118,6 +121,9 @@
           "react",
           "react-hmre",
           "stage-1"
+        ],
+        "plugins": [
+          "emotion"
         ]
       },
       "production": {
@@ -138,6 +144,7 @@
           "stage-1"
         ],
         "plugins": [
+          "emotion",
           "transform-react-constant-elements",
           "transform-react-remove-prop-types"
         ]
