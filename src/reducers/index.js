@@ -4,8 +4,8 @@ import influences from './allDataReducer';
 import { routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
-  appData: appData,
-  influences: influences,
+  appData,
+  influences,
   routing: routerReducer
 });
 
