@@ -1,15 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'react-emotion';
+
+const StyledTitle = styled.h1( props => {
+  return [
+    `
+    color: darkred;
+    `
+  ]
+})
 
 const HomePage = () => {
   return (
     <div>
-      <h1>React Slingshot</h1>
+      <StyledTitle>New Project Time</StyledTitle>
 
       <h2>Get Started</h2>
       <ol>
         <li>Review the <Link to="/juice">Juice</Link></li>
-        <li>Remove the demo and start coding: npm run remove-demo</li>
       </ol>
     </div>
   );
