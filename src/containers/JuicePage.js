@@ -13,7 +13,7 @@ const StyledButton = styled.button(props => {
         `
         background-color: ${hue};
         color: ${faith || 'grey'};
-        width: 85px;
+        width: 100px;
         `
     ]
 });
@@ -33,6 +33,10 @@ export class Juice extends React.Component {
         Fetch Data
     </StyledButton>
     {this.props.fetching ? 'Loading' : ''}
+    <br></br>
+    <StyledButton hue="lightred" faith="black" onClick={() => this.props.actions.fetchAllData()}>
+      Fetch All Data
+    </StyledButton>
     </div>
     );
   }
