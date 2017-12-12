@@ -19,24 +19,14 @@ const StyledButton = styled.button(props => {
 });
 
 export class Juice extends React.Component {
-//   ACTION = () => { 
-//     this.props.actions.ACTION(ARGS);
-//   }
 
   render() {
     return (
-    //   <Sauce
-    //     onACTION={this.ACTION}
-    //   />
     <div>
-    <StyledButton hue="blue" faith="white" onClick={() => this.props.actions.fetchData('rec2QWBVRGEI5r1k0')}>
+    <StyledButton hue="blue" faith="white" onClick={() => this.props.actions.fetchAll('Curiosities', 1, 'Grid view')}>
         Fetch Data
     </StyledButton>
     {this.props.fetching ? 'Loading' : ''}
-    <br></br>
-    <StyledButton hue="lightred" faith="black" onClick={() => this.props.actions.fetchAllData()}>
-      Fetch All Data
-    </StyledButton>
     </div>
     );
   }
@@ -50,7 +40,8 @@ Juice.propTypes = {
 function mapStateToProps(state) {
   return {
     // app state you want to access
-    fetching: state.appData.isFetching
+    fetching: state.data.CuriositiesLoading,
+    curiousities: state.data.CuriositiesData
   };
 }
 

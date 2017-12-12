@@ -3,79 +3,74 @@ import Airtable from 'airtable';
 
 // import {getFormattedDateTime} from '../utils/dates';
 
+// encrypt API KEY
 const API_KEY = 'needs to be encrypted'
+//Connect to base of your choice
+const BASE_ID = 'appwS8caNUMzpsFwb'
+var base = new Airtable({apiKey: API_KEY}).base(BASE_ID);
 
-var base = new Airtable({apiKey: API_KEY}).base('appwS8caNUMzpsFwb');
 
-
-export function getData() {
+// Airtable Supported Calls
+export function setLoading (scope, loading) {
   return {
-    type: types.FETCHING_DATA
+    type: types.SET_LOADING,
+    payload: {
+      scope,
+      loading
+    }
   }
 }
 
-export function getDataSuccess(data) {
+export function fetchSuccess(scope, data, success) {
   return {
-    type: types.FETCHING_DATA_SUCCESS,
+    type: types.FETCHING_SUCCESS,
+    payload: {
     data,
+    scope,
+    success
+    }
   }
 }
 
-export function getDataFailure() {
+export function fetchFailure(scope) {
   return {
-    type: types.FETCHING_DATA_FAILURE
+    type: types.FETCHING_FAILURE,
+    payload: {
+      scope,
+    }
   }
 }
 
-export function fetchData(id) {
+export function fetchAll (scope, amount, view) {
+  return (dispatch) => {
+    dispatch(setLoading(scope,true))
+    let results = {}
+    base(scope).select({
+      // maxRecords: amount,
+      view,
+    }).eachPage( function page(records, fetchNextPage) {
+      records.forEach(record => {
+        results[record.id] = record.fields
+      });
+      fetchNextPage();
+    }).then((data) => {
+        dispatch(fetchSuccess(scope,results,true))
+      })
+      .catch((err) => {
+        dispatch(fetchFailure(scope))
+        console.log('err:', err)
+      })
+  }
+}
+
+// update for specific Record
+export function fetchData(scope,id) {
   return (dispatch) => {
     dispatch(getData())
-    base('Influences').find(id)
+    base(scope).find(id)
       .then((data) => {
         dispatch(getDataSuccess({id, data: data.fields}))
       })
       .catch((err) => console.log('err:', err))
-  }
-}
-// fetching all data 
-
-export function getAllData() {
-  return {
-    type: types.FETCHING_ALL_DATA
-  }
-}
-
-export function getAllDataSuccess(data) {
-  return {
-    type: types.FETCHING_ALL_DATA_SUCCESS,
-    data,
-  }
-}
-
-export function getAllDataFailure() {
-  return {
-    type: types.FETCHING_DATA_FAILURE
-  }
-}
-
-export function fetchAllData(args) {
-  return (dispatch) => {
-    dispatch(getAllData())
-    let results = []
-    base('Influences').select({
-      // maxRecords: 3,
-      view: "*"
-    }).eachPage( function page(records, fetchNextPage) {
-      records.forEach(record => {
-        results.push({id: record.id, details: record.fields})
-      });
-      fetchNextPage();
-    }).then((data) => {
-        dispatch(getAllDataSuccess(results))
-      })
-      .catch((err) => {
-        dispatch(getAllDataFailure())
-        console.log('err:', err)
-      })
   }
 }
