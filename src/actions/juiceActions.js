@@ -3,7 +3,7 @@ import Airtable from 'airtable';
 
 // import {getFormattedDateTime} from '../utils/dates';
 
-const API_KEY = 'keysmOnboBG8IYPwR';
+const API_KEY = 'needs to be encrypted'
 
 var base = new Airtable({apiKey: API_KEY}).base('appwS8caNUMzpsFwb');
 
